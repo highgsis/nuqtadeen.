@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#15392e">
+<title>نُقْطَة | المسابقة الإسلامية</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+--green: #15392e;
+--green2: #245746;
+--gold: #d5b36b;
+--bg: #f5f5ef;
+--card: #ffffff;
+--text: #203a30;
+--muted: #78857d;
+--border: #e5e8df;
+--success: #26754b;
+--danger: #b94c45;
+}
+
+* {
+box-sizing: border-box;
+}
+
+body {
+margin: 0;
+font-family: "Aref Ruqaa", serif;
+background: var(--bg);
+color: var(--text);
+min-height: 100vh;
+}
+
+button, input, select {
+font-family: inherit;
+font-size: inherit;
+}
+
+button {
+cursor: pointer;
+transition: .2s ease;
+}
+
+button:active {
+transform: scale(.98);
+}
+
+.topbar {
+background: var(--green);
+color: white;
+padding: 13px 6%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 12px;
+}
+
+.brand {
+font-size: 32px;
+font-weight: bold;
+color: var(--gold);
+line-height: 1.2;
+}
+
+.top-caption {
+color: #d9e4dc;
+font-size: 15px;
+}
+
+main {
+width: min(920px, 92%);
+margin: 30px auto 55px;
+}
+
+.hero {
+background: var(--green);
+color: white;
+border-radius: 25px;
+padding: 32px;
+margin-bottom: 22px;
+position: relative;
+overflow: hidden;
+}
+
+.hero::after {
+content: "۞";
+position: absolute;
+left: 16px;
+top: -32px;
+color: rgba(213,179,107,.13);
+font-size: 175px;
+pointer-events: none;
+}
+
+.eyebrow {
+color: var(--gold);
+font-size: 17px;
+margin-bottom: 4px;
+}
+
+.hero h1 {
+font-size: clamp(30px, 5vw, 43px);
+margin: 0 0 8px;
+line-height: 1.5;
+}
+
+.hero p {
+margin: 0;
+font-size: 18px;
+color: #dce6df;
+max-width: 580px;
+}
+
+.panel {
+background: var(--card);
+border: 1px solid var(--border);
+border-radius: 21px;
+padding: 24px;
+margin-bottom: 18px;
+box-shadow: 0 7px 25px rgba(20,50,38,.035);
+}
+
+.section-title {
+font-size: 25px;
+margin: 0 0 15px;
+}
+
+.mode-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 12px;
+}
+
+.mode-card {
+text-align: right;
+border: 2px solid var(--border);
+border-radius: 16px;
+padding: 16px;
+background: #fbfcf8;
+color: var(--text);
+}
+
+.mode-card.active {
+border-color: var(--green2);
+background: #edf4ee;
+}
+
+.mode-icon {
+display: block;
+font-size: 27px;
+margin-bottom: 4px;
+}
+
+.mode-card strong {
+display: block;
+font-size: 20px;
+}
+
+.mode-card small {
+display: block;
+color: var(--muted);
+font-size: 15px;
+}
+
+.field-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 15px;
+}
+
+.field {
+display: flex;
+flex-direction: column;
+gap: 6px;
+margin-bottom: 12px;
+}
+
+.field label {
+font-size: 17px;
+font-weight: bold;
+}
+
+.field input,
+.field select {
+width: 100%;
+padding: 11px 12px;
+border: 1px solid #dfe4da;
+border-radius: 11px;
+background: #fafbf8;
+color: var(--text);
+outline: none;
+}
+
+.field input:focus,
+.field select:focus {
+border-color: var(--green2);
+}
+
+.primary-btn {
+display: block;
+width: 100%;
+border: 0;
+border-radius: 13px;
+padding: 13px 18px;
+background: var(--green);
+color: white;
+font-size: 21px;
+font-weight: bold;
+margin-top: 12px;
+}
+
+.primary-btn:hover {
+background: var(--green2);
+}
+
+.secondary-btn {
+border: 1px solid var(--border);
+border-radius: 11px;
+padding: 10px 16px;
+background: #edf2eb;
+color: var(--green);
+font-weight: bold;
+}
+
+.hidden {
+display: none !important;
+}
+
+.quiz-meta {
+display: flex;
+align-items: center;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: 10px;
+}
+
+.pill {
+display: inline-block;
+background: #edf2eb;
+border-radius: 30px;
+padding: 5px 12px;
+font-size: 15px;
+}
+
+.progress-track {
+width: 100%;
+height: 7px;
+background: #e8ebe4;
+border-radius: 20px;
+overflow: hidden;
+margin: 18px 0;
+}
+
+.progress-fill {
+width: 0;
+height: 100%;
+background: var(--gold);
+transition: width .25s;
+}
+
+.question {
+font-size: clamp(24px, 4vw, 31px);
+line-height: 1.7;
+margin: 12px 0 20px;
+}
+
+.answers {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 12px;
+}
+
+.answer {
+text-align: right;
+border: 1.5px solid var(--border);
+background: #fbfcf9;
+color: var(--text);
+padding: 14px;
+border-radius: 13px;
+min-height: 58px;
+font-size: 18px;
+}
+
+.answer:hover:not(:disabled) {
+border-color: var(--green2);
+background: #f0f5ef;
+}
+
+.answer.correct {
+border-color: var(--success);
+background: #e5f5e9;
+color: #1c6840;
+}
+
+.answer.wrong {
+border-color: var(--danger);
+background: #fff0ee;
+color: #a63e38;
+}
+
+.answer:disabled {
+cursor: default;
+}
+
+.feedback {
+padding: 13px 15px;
+border-radius: 12px;
+margin-top: 16px;
+font-size: 18px;
+line-height: 1.7;
+}
+
+.feedback.good {
+background: #e7f4e9;
+color: #216b40;
+}
+
+.feedback.bad {
+background: #fff0ee;
+color: #a63e38;
+}
+
+.quiz-actions {
+display: flex;
+gap: 10px;
+margin-top: 17px;
+}
+
+.quiz-actions button {
+flex: 1;
+}
+
+.score-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 12px;
+margin: 18px 0;
+}
+
+.score-box {
+background: #f6f7f1;
+border-radius: 15px;
+padding: 17px;
+text-align: center;
+}
+
+.score-box span {
+display: block;
+font-size: 17px;
+color: var(--muted);
+}
+
+.score-box strong {
+display: block;
+font-size: 31px;
+color: var(--green);
+}
+
+.result-icon {
+font-size: 55px;
+text-align: center;
+}
+
+.result-heading {
+text-align: center;
+font-size: 30px;
+margin: 4px 0;
+}
+
+.result-description {
+text-align: center;
+color: var(--muted);
+font-size: 18px;
+}
+
+.review-item {
+border-bottom: 1px solid var(--border);
+padding: 13px 0;
+}
+
+.review-item:last-child {
+border-bottom: 0;
+}
+
+.review-question {
+font-size: 19px;
+font-weight: bold;
+}
+
+.review-answer {
+color: var(--success);
+font-size: 17px;
+}
+
+.review-your-answer {
+color: var(--danger);
+font-size: 16px;
+}
+
+.footer {
+text-align: center;
+color: var(--muted);
+font-size: 15px;
+padding: 10px 0 20px;
+}
+
+.creator {
+margin-top: 6px;
+font-size: 14px;
+color: var(--green2);
+opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+main {
+margin-top: 18px;
+}
+
+.hero {
+padding: 24px 20px;
+}
+
+.panel {
+padding: 18px;
+}
+
+.field-grid,
+.answers {
+grid-template-columns: 1fr;
+}
+
+.mode-grid {
+gap: 8px;
+}
+
+.mode-card {
+padding: 12px;
+}
+
+.quiz-actions {
+flex-direction: column;
+}
+
+.top-caption {
+font-size: 13px;
+}
+}
+</style>
+</head>
+
+<body>
+<header class="topbar">
+<div class="brand">نُقْطَة</div>
+<div class="top-caption">المسابقة الإسلامية التفاعلية</div>
+</header>
+
+<main>
+<section class="hero">
+<div class="eyebrow">معرفة • منافسة • تعلّم</div>
+<h1>اختبر معلوماتك الإسلامية</h1>
+<p>تحدَّ نفسك، واكتشف معلومات جديدة، أو نافس أصدقاءك في مسابقة إسلامية ممتعة.</p>
+</section>
+
+<section id="setup">
+<div class="panel">
+<h2 class="section-title">اختر طريقة اللعب</h2>
+
+<div class="mode-grid">
+<button class="mode-card active" id="soloMode" onclick="setMode('solo')">
+<span class="mode-icon">🧠</span>
+<strong>تحدّي فردي</strong>
+<small>اختبر معلوماتك بنفسك</small>
+</button>
+
+<button class="mode-card" id="duoMode" onclick="setMode('duo')">
+<span class="mode-icon">🏆</span>
+<strong>وضع التنافس</strong>
+<small>لاعبان يتنافسان على النقاط</small>
+</button>
+</div>
+</div>
+
+<div class="panel">
+<h2 class="section-title">إعدادات المسابقة</h2>
+
+<div id="playerNames" class="field-grid hidden">
+<div class="field">
+<label for="player1">اسم اللاعب الأول</label>
+<input id="player1" maxlength="20" placeholder="اللاعب الأول">
+</div>
+
+<div class="field">
+<label for="player2">اسم اللاعب الثاني</label>
+<input id="player2" maxlength="20" placeholder="اللاعب الثاني">
+</div>
+</div>
+
+<div class="field-grid">
+<div class="field">
+<label for="category">التصنيف</label>
+<select id="category">
+<option value="الكل">جميع التصنيفات</option>
+<option value="القرآن الكريم">القرآن الكريم</option>
+<option value="الأنبياء">الأنبياء والرسل</option>
+<option value="السيرة النبوية">السيرة النبوية</option>
+<option value="العبادات">العبادات</option>
+<option value="الصحابة">الصحابة</option>
+<option value="معلومات إسلامية">معلومات إسلامية</option>
+</select>
+</div>
+
+<div class="field">
+<label for="difficulty">مستوى الصعوبة</label>
+<select id="difficulty">
+<option value="الكل">جميع المستويات</option>
+<option value="سهل">سهل</option>
+<option value="متوسط">متوسط</option>
+<option value="صعب">صعب</option>
+</select>
+</div>
+
+<div class="field">
+<label for="questionCount">عدد الأسئلة</label>
+<select id="questionCount">
+<option value="10">10 أسئلة</option>
+<option value="15">15 سؤالًا</option>
+<option value="20" selected>20 سؤالًا</option>
+<option value="30">30 سؤالًا</option>
+<option value="50">50 سؤالًا</option>
+<option value="all">كل الأسئلة المتاحة</option>
+</select>
+</div>
+</div>
+
+<button class="primary-btn" onclick="startQuiz()">ابدأ المسابقة ←</button>
+</div>
+</section>
+
+<section id="quizScreen" class="hidden">
+<div class="panel">
+<div class="quiz-meta">
+<span class="pill" id="questionNumber">السؤال 1</span>
+<span class="pill" id="categoryLabel">القرآن الكريم</span>
+<span class="pill" id="turnLabel">دور اللاعب</span>
+</div>
+
+<div class="progress-track">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+
+<h2 class="question" id="questionText"></h2>
+<div class="answers" id="answers"></div>
+<div id="feedback" class="feedback hidden"></div>
+
+<div class="quiz-actions">
+<button class="secondary-btn" onclick="quitQuiz()">إنهاء المسابقة</button>
+<button class="primary-btn hidden" id="nextButton" onclick="nextQuestion()" style="margin-top:0">السؤال التالي ←</button>
+</div>
+</div>
+</section>
+
+<section id="resultScreen" class="hidden">
+<div class="panel">
+<div class="result-icon" id="resultIcon">🏆</div>
+<h2 class="result-heading" id="resultTitle">انتهت المسابقة!</h2>
+<p class="result-description" id="resultDescription"></p>
+
+<div class="score-grid" id="scoreGrid"></div>
+
+<h2 class="section-title">مراجعة الإجابات</h2>
+<div id="reviewList"></div>
+
+<button class="primary-btn" onclick="showSetup()">العودة إلى الصفحة الرئيسية</button>
+<button class="secondary-btn" style="width:100%;margin-top:10px" onclick="startQuiz()">إعادة المسابقة</button>
+</div>
+</section>
+
+<div class="footer">
+نُقْطَة — تعلّم، نافس، وازدد معرفة
+<div class="creator">صُنع بواسطة حمزة بدوي © 2026</div>
+</div>
+</main>
+
+<script>
+const questions = [
+// القرآن الكريم
+{q:"ما السورة التي تُسمّى قلب القرآن؟",a:"سورة يس",o:["سورة الرحمن","سورة يس","سورة الملك","سورة الواقعة"],c:"القرآن الكريم",d:"سهل"},
+{q:"كم عدد سور القرآن الكريم؟",a:"114 سورة",o:["110 سور","112 سورة","114 سورة","120 سورة"],c:"القرآن الكريم",d:"سهل"},
+{q:"ما أطول سورة في القرآن الكريم؟",a:"سورة البقرة",o:["سورة آل عمران","سورة البقرة","سورة النساء","سورة المائدة"],c:"القرآن الكريم",d:"سهل"},
+{q:"ما أقصر سورة في القرآن الكريم؟",a:"سورة الكوثر",o:["سورة العصر","سورة الإخلاص","سورة الكوثر","سورة النصر"],c:"القرآن الكريم",d:"سهل"},
+{q:"ما أول سورة في ترتيب المصحف؟",a:"سورة الفاتحة",o:["سورة البقرة","سورة الفاتحة","سورة العلق","سورة الناس"],c:"القرآن الكريم",d:"سهل"},
+{q:"ما السورة التي لا تبدأ بالبسملة؟",a:"سورة التوبة",o:["سورة التوبة","سورة النمل","سورة الكهف","سورة يونس"],c:"القرآن الكريم",d:"متوسط"},
+{q:"ما السورة التي وردت فيها البسملة مرتين؟",a:"سورة النمل",o:["سورة النمل","سورة يوسف","سورة مريم","سورة القصص"],c:"القرآن الكريم",d:"متوسط"},
+{q:"في أي شهر نزل القرآن الكريم؟",a:"رمضان",o:["محرم","شعبان","رمضان","شوال"],c:"القرآن الكريم",d:"سهل"},
+{q:"ما أول ما نزل من القرآن الكريم؟",a:"اقرأ باسم ربك الذي خلق",o:["الحمد لله رب العالمين","قل هو الله أحد","اقرأ باسم ربك الذي خلق","يا أيها المدثر"],c:"القرآن الكريم",d:"متوسط"},
+{q:"كم عدد أجزاء القرآن الكريم؟",a:"30 جزءًا",o:["20 جزءًا","25 جزءًا","30 جزءًا","40 جزءًا"],c:"القرآن الكريم",d:"سهل"},
+{q:"ما السورة التي تُقرأ في كل ركعة من الصلاة؟",a:"سورة الفاتحة",o:["سورة الفاتحة","سورة الإخلاص","سورة الناس","سورة الفلق"],c:"القرآن الكريم",d:"سهل"},
+{q:"ما السورة التي سُمّيت باسم امرأة؟",a:"سورة مريم",o:["سورة مريم","سورة النساء","سورة النور","سورة المجادلة"],c:"القرآن الكريم",d:"سهل"},
+{q:"ما السورة التي سُمّيت باسم نبي وتبدأ بـ «الر»؟",a:"سورة إبراهيم",o:["سورة طه","سورة إبراهيم","سورة نوح","سورة محمد"],c:"القرآن الكريم",d:"متوسط"},
+{q:"في أي سورة توجد آية الكرسي؟",a:"سورة البقرة",o:["سورة آل عمران","سورة البقرة","سورة النساء","سورة التوبة"],c:"القرآن الكريم",d:"سهل"},
+{q:"ما السورة التي تبدأ بـ «تبارك الذي بيده الملك»؟",a:"سورة الملك",o:["سورة القلم","سورة الملك","سورة الواقعة","سورة الحديد"],c:"القرآن الكريم",d:"سهل"},
+{q:"ما المقصود بليلة القدر من حيث الفضل؟",a:"ليلة خير من ألف شهر",o:["ليلة تساوي يومًا واحدًا","ليلة خير من ألف شهر","أول ليلة من السنة","ليلة النصف من شعبان"],c:"القرآن الكريم",d:"متوسط"},
+{q:"كم عدد آيات سورة الفاتحة؟",a:"7 آيات",o:["5 آيات","6 آيات","7 آيات","8 آيات"],c:"القرآن الكريم",d:"متوسط"},
+{q:"ما السورة التي ورد فيها ذكر أصحاب الكهف؟",a:"سورة الكهف",o:["سورة مريم","سورة الكهف","سورة الأنبياء","سورة القصص"],c:"القرآن الكريم",d:"سهل"},
+
+// الأنبياء والرسل
+{q:"من أول الأنبياء؟",a:"آدم عليه السلام",o:["نوح عليه السلام","إبراهيم عليه السلام","آدم عليه السلام","إدريس عليه السلام"],c:"الأنبياء",d:"سهل"},
+{q:"من خاتم الأنبياء والمرسلين؟",a:"محمد ﷺ",o:["عيسى عليه السلام","موسى عليه السلام","إبراهيم عليه السلام","محمد ﷺ"],c:"الأنبياء",d:"سهل"},
+{q:"من النبي الذي ابتلعه الحوت؟",a:"يونس عليه السلام",o:["أيوب عليه السلام","يونس عليه السلام","يوسف عليه السلام","هود عليه السلام"],c:"الأنبياء",d:"سهل"},
+{q:"من النبي الذي كلّمه الله؟",a:"موسى عليه السلام",o:["داود عليه السلام","موسى عليه السلام","يوسف عليه السلام","صالح عليه السلام"],c:"الأنبياء",d:"سهل"},
+{q:"من النبي الذي بنى السفينة بأمر الله؟",a:"نوح عليه السلام",o:["إبراهيم عليه السلام","نوح عليه السلام","لوط عليه السلام","إسماعيل عليه السلام"],c:"الأنبياء",d:"سهل"},
+{q:"من النبي الذي أُلقي في النار فلم تحرقه؟",a:"إبراهيم عليه السلام",o:["موسى عليه السلام","إبراهيم عليه السلام","يعقوب عليه السلام","زكريا عليه السلام"],c:"الأنبياء",d:"سهل"},
+{q:"من النبي الذي اشتهر بتفسير الرؤى؟",a:"يوسف عليه السلام",o:["يوسف عليه السلام","سليمان عليه السلام","هارون عليه السلام","إلياس عليه السلام"],c:"الأنبياء",d:"سهل"},
+{q:"من النبي الذي علّمه الله منطق الطير؟",a:"سليمان عليه السلام",o:["داود عليه السلام","سليمان عليه السلام","يحيى عليه السلام","إسحاق عليه السلام"],c:"الأنبياء",d:"متوسط"},
+{q:"من النبي الذي كان يصنع الدروع؟",a:"داود عليه السلام",o:["داود عليه السلام","موسى عليه السلام","عيسى عليه السلام","إدريس عليه السلام"],c:"الأنبياء",d:"متوسط"},
+{q:"من والد النبي إسماعيل عليه السلام؟",a:"إبراهيم عليه السلام",o:["يعقوب عليه السلام","إبراهيم عليه السلام","نوح عليه السلام","زكريا عليه السلام"],c:"الأنبياء",d:"سهل"},
+{q:"من النبي الذي وُلد من غير أب؟",a:"عيسى عليه السلام",o:["يحيى عليه السلام","عيسى عليه السلام","إسحاق عليه السلام","يوسف عليه السلام"],c:"الأنبياء",d:"سهل"},
+{q:"من النبي الذي دعا: «رب إني مسني الضر وأنت أرحم الراحمين»؟",a:"أيوب عليه السلام",o:["أيوب عليه السلام","يونس عليه السلام","زكريا عليه السلام","يعقوب عليه السلام"],c:"الأنبياء",d:"متوسط"},
+{q:"من النبي الذي رفع قواعد الكعبة مع ابنه؟",a:"إبراهيم عليه السلام",o:["نوح عليه السلام","إبراهيم عليه السلام","موسى عليه السلام","داود عليه السلام"],c:"الأنبياء",d:"متوسط"},
+{q:"من الابن الذي شارك إبراهيم عليه السلام في رفع قواعد الكعبة؟",a:"إسماعيل عليه السلام",o:["إسحاق عليه السلام","يعقوب عليه السلام","إسماعيل عليه السلام","يوسف عليه السلام"],c:"الأنبياء",d:"متوسط"},
+{q:"من النبي الذي أرسله الله إلى قوم عاد؟",a:"هود عليه السلام",o:["صالح عليه السلام","هود عليه السلام","شعيب عليه السلام","لوط عليه السلام"],c:"الأنبياء",d:"متوسط"},
+{q:"من النبي الذي أُرسل إلى قوم ثمود؟",a:"صالح عليه السلام",o:["هود عليه السلام","صالح عليه السلام","شعيب عليه السلام","إدريس عليه السلام"],c:"الأنبياء",d:"متوسط"},
+
+// السيرة النبوية
+{q:"في أي مدينة وُلد النبي محمد ﷺ؟",a:"مكة المكرمة",o:["المدينة المنورة","الطائف","مكة المكرمة","القدس"],c:"السيرة النبوية",d:"سهل"},
+{q:"إلى أي مدينة هاجر النبي ﷺ؟",a:"المدينة المنورة",o:["الطائف","المدينة المنورة","دمشق","القدس"],c:"السيرة النبوية",d:"سهل"},
+{q:"ما اسم والد النبي محمد ﷺ؟",a:"عبد الله",o:["عبد المطلب","أبو طالب","عبد الله","حمزة"],c:"السيرة النبوية",d:"سهل"},
+{q:"ما اسم والدة النبي محمد ﷺ؟",a:"آمنة بنت وهب",o:["خديجة بنت خويلد","آمنة بنت وهب","حليمة السعدية","فاطمة بنت أسد"],c:"السيرة النبوية",d:"متوسط"},
+{q:"كم كان عمر النبي ﷺ عندما نزل عليه الوحي؟",a:"40 سنة",o:["25 سنة","35 سنة","40 سنة","45 سنة"],c:"السيرة النبوية",d:"سهل"},
+{q:"في أي غار نزل الوحي أول مرة؟",a:"غار حراء",o:["غار ثور","غار حراء","غار أحد","غار النور"],c:"السيرة النبوية",d:"سهل"},
+{q:"من أول زوجات النبي ﷺ؟",a:"خديجة بنت خويلد رضي الله عنها",o:["عائشة رضي الله عنها","حفصة رضي الله عنها","خديجة بنت خويلد رضي الله عنها","زينب رضي الله عنها"],c:"السيرة النبوية",d:"سهل"},
+{q:"من رافق النبي ﷺ في الهجرة إلى المدينة؟",a:"أبو بكر الصديق رضي الله عنه",o:["عمر بن الخطاب رضي الله عنه","علي بن أبي طالب رضي الله عنه","أبو بكر الصديق رضي الله عنه","عثمان بن عفان رضي الله عنه"],c:"السيرة النبوية",d:"سهل"},
+{q:"ما اسم الغار الذي اختبأ فيه النبي ﷺ وصاحبه أثناء الهجرة؟",a:"غار ثور",o:["غار حراء","غار ثور","غار أحد","غار النور"],c:"السيرة النبوية",d:"متوسط"},
+{q:"ما أول مسجد بناه النبي ﷺ بعد الهجرة؟",a:"مسجد قباء",o:["المسجد الحرام","المسجد النبوي","مسجد قباء","المسجد الأقصى"],c:"السيرة النبوية",d:"متوسط"},
+{q:"ما اسم العام الذي وُلد فيه النبي ﷺ؟",a:"عام الفيل",o:["عام الحزن","عام الوفود","عام الفيل","عام الهجرة"],c:"السيرة النبوية",d:"سهل"},
+{q:"كم سنة تقريبًا استمرت الدعوة النبوية في مكة قبل الهجرة؟",a:"13 سنة",o:["10 سنوات","13 سنة","15 سنة","20 سنة"],c:"السيرة النبوية",d:"متوسط"},
+{q:"ما اسم ابنة النبي ﷺ التي كانت زوجة عثمان بن عفان رضي الله عنه؟",a:"رقية رضي الله عنها",o:["زينب رضي الله عنها","فاطمة رضي الله عنها","رقية رضي الله عنها","أم كلثوم رضي الله عنها"],c:"السيرة النبوية",d:"صعب"},
+{q:"ما اسم آخر غزوة كبرى قادها النبي ﷺ؟",a:"غزوة تبوك",o:["غزوة بدر","غزوة حنين","غزوة أحد","غزوة تبوك"],c:"السيرة النبوية",d:"صعب"},
+
+// العبادات
+{q:"كم عدد الصلوات المفروضة في اليوم والليلة؟",a:"خمس صلوات",o:["ثلاث صلوات","أربع صلوات","خمس صلوات","ست صلوات"],c:"العبادات",d:"سهل"},
+{q:"كم عدد أركان الإسلام؟",a:"خمسة",o:["ثلاثة","أربعة","خمسة","ستة"],c:"العبادات",d:"سهل"},
+{q:"ما الركن الذي يأتي بعد الشهادتين في أركان الإسلام؟",a:"إقامة الصلاة",o:["إيتاء الزكاة","إقامة الصلاة","صوم رمضان","حج البيت"],c:"العبادات",d:"متوسط"},
+{q:"في أي شهر يصوم المسلمون؟",a:"رمضان",o:["رجب","شعبان","رمضان","ذو الحجة"],c:"العبادات",d:"سهل"},
+{q:"إلى أي جهة يتجه المسلمون في الصلاة؟",a:"الكعبة المشرفة",o:["المسجد النبوي","المسجد الأقصى","الكعبة المشرفة","جبل عرفات"],c:"العبادات",d:"سهل"},
+{q:"كم ركعة في صلاة الفجر المفروضة؟",a:"ركعتان",o:["ركعة واحدة","ركعتان","ثلاث ركعات","أربع ركعات"],c:"العبادات",d:"سهل"},
+{q:"كم ركعة في صلاة المغرب المفروضة؟",a:"ثلاث ركعات",o:["ركعتان","ثلاث ركعات","أربع ركعات","خمس ركعات"],c:"العبادات",d:"سهل"},
+{q:"ما العبادة التي تُؤدّى في مكة في وقت مخصوص من السنة؟",a:"الحج",o:["الاعتكاف","الحج","الوضوء","صلاة الكسوف"],c:"العبادات",d:"سهل"},
+{q:"ما اسم الماء المبارك الموجود في مكة؟",a:"ماء زمزم",o:["ماء زمزم","ماء الكوثر","ماء النيل","ماء عرفة"],c:"العبادات",d:"سهل"},
+{q:"ما الصلاة التي تُصلّى عند حدوث كسوف الشمس؟",a:"صلاة الكسوف",o:["صلاة الاستسقاء","صلاة الوتر","صلاة الكسوف","صلاة الضحى"],c:"العبادات",d:"متوسط"},
+{q:"ما المقصود بالتيمم؟",a:"استعمال الصعيد الطيب بدل الوضوء أو الغسل عند وجود عذر شرعي",o:["غسل القدمين فقط","استعمال الصعيد الطيب بدل الوضوء أو الغسل عند وجود عذر شرعي","الصلاة دون طهارة مطلقًا","الاغتسال بالماء البارد"],c:"العبادات",d:"صعب"},
+{q:"ما اسم الصلاة التي تُؤدّى لطلب نزول المطر؟",a:"صلاة الاستسقاء",o:["صلاة الكسوف","صلاة الاستسقاء","صلاة العيد","صلاة التراويح"],c:"العبادات",d:"متوسط"},
+{q:"ما الليلة التي يتحرّاها المسلمون في العشر الأواخر من رمضان؟",a:"ليلة القدر",o:["ليلة الإسراء فقط","ليلة القدر","ليلة الجمعة فقط","ليلة النصف من شعبان"],c:"العبادات",d:"متوسط"},
+
+// الصحابة
+{q:"من أول الخلفاء الراشدين؟",a:"أبو بكر الصديق رضي الله عنه",o:["عمر بن الخطاب رضي الله عنه","عثمان بن عفان رضي الله عنه","أبو بكر الصديق رضي الله عنه","علي بن أبي طالب رضي الله عنه"],c:"الصحابة",d:"سهل"},
+{q:"من لُقّب بالفاروق؟",a:"عمر بن الخطاب رضي الله عنه",o:["أبو بكر الصديق رضي الله عنه","عمر بن الخطاب رضي الله عنه","عثمان بن عفان رضي الله عنه","خالد بن الوليد رضي الله عنه"],c:"الصحابة",d:"سهل"},
+{q:"من لُقّب بذي النورين؟",a:"عثمان بن عفان رضي الله عنه",o:["علي بن أبي طالب رضي الله عنه","طلحة بن عبيد الله رضي الله عنه","عثمان بن عفان رضي الله عنه","عبد الرحمن بن عوف رضي الله عنه"],c:"الصحابة",d:"متوسط"},
+{q:"من ابن عم النبي ﷺ وزوج ابنته فاطمة؟",a:"علي بن أبي طالب رضي الله عنه",o:["علي بن أبي طالب رضي الله عنه","العباس بن عبد المطلب رضي الله عنه","أبو هريرة رضي الله عنه","زيد بن حارثة رضي الله عنه"],c:"الصحابة",d:"سهل"},
+{q:"من الصحابي الذي كان مؤذن الرسول ﷺ؟",a:"بلال بن رباح رضي الله عنه",o:["أبو هريرة رضي الله عنه","بلال بن رباح رضي الله عنه","سلمان الفارسي رضي الله عنه","أنس بن مالك رضي الله عنه"],c:"الصحابة",d:"سهل"},
+{q:"من الصحابي الذي لُقّب بسيف الله المسلول؟",a:"خالد بن الوليد رضي الله عنه",o:["عمر بن الخطاب رضي الله عنه","خالد بن الوليد رضي الله عنه","سعد بن أبي وقاص رضي الله عنه","الزبير بن العوام رضي الله عنه"],c:"الصحابة",d:"متوسط"},
+{q:"من الصحابي المعروف بكثرة رواية الحديث؟",a:"أبو هريرة رضي الله عنه",o:["أبو هريرة رضي الله عنه","بلال بن رباح رضي الله عنه","أبو ذر الغفاري رضي الله عنه","مصعب بن عمير رضي الله عنه"],c:"الصحابة",d:"متوسط"},
+{q:"من الصحابي الذي نام في فراش النبي ﷺ ليلة الهجرة؟",a:"علي بن أبي طالب رضي الله عنه",o:["أبو بكر الصديق رضي الله عنه","علي بن أبي طالب رضي الله عنه","عمر بن الخطاب رضي الله عنه","عثمان بن عفان رضي الله عنه"],c:"الصحابة",d:"متوسط"},
+{q:"من الصحابي الذي اشتهر بلقب أمين الأمة؟",a:"أبو عبيدة بن الجراح رضي الله عنه",o:["أبو عبيدة بن الجراح رضي الله عنه","معاذ بن جبل رضي الله عنه","زيد بن ثابت رضي الله عنه","سعد بن معاذ رضي الله عنه"],c:"الصحابة",d:"صعب"},
+{q:"من الصحابي الذي أشار بحفر الخندق؟",a:"سلمان الفارسي رضي الله عنه",o:["سلمان الفارسي رضي الله عنه","أبو هريرة رضي الله عنه","بلال بن رباح رضي الله عنه","عبد الله بن مسعود رضي الله عنه"],c:"الصحابة",d:"صعب"},
+{q:"من الصحابي الذي جمع القرآن في مصحف في عهد أبي بكر بأمره؟",a:"زيد بن ثابت رضي الله عنه",o:["زيد بن ثابت رضي الله عنه","خالد بن الوليد رضي الله عنه","بلال بن رباح رضي الله عنه","أبو عبيدة بن الجراح رضي الله عنه"],c:"الصحابة",d:"صعب"},
+
+// معلومات إسلامية
+{q:"كم عدد أركان الإيمان؟",a:"ستة",o:["أربعة","خمسة","ستة","سبعة"],c:"معلومات إسلامية",d:"سهل"},
+{q:"ما الكتاب الذي أُنزل على موسى عليه السلام؟",a:"التوراة",o:["الإنجيل","الزبور","التوراة","القرآن"],c:"معلومات إسلامية",d:"سهل"},
+{q:"ما الكتاب الذي أُنزل على داود عليه السلام؟",a:"الزبور",o:["التوراة","الزبور","الإنجيل","القرآن"],c:"معلومات إسلامية",d:"متوسط"},
+{q:"ما الكتاب الذي أُنزل على عيسى عليه السلام؟",a:"الإنجيل",o:["الإنجيل","التوراة","الزبور","القرآن"],c:"معلومات إسلامية",d:"سهل"},
+{q:"ما اسم الملك الموكّل بالوحي؟",a:"جبريل عليه السلام",o:["ميكائيل عليه السلام","إسرافيل عليه السلام","جبريل عليه السلام","مالك عليه السلام"],c:"معلومات إسلامية",d:"سهل"},
+{q:"ما اسم الملك الموكّل بالنفخ في الصور؟",a:"إسرافيل عليه السلام",o:["جبريل عليه السلام","إسرافيل عليه السلام","ميكائيل عليه السلام","مالك عليه السلام"],c:"معلومات إسلامية",d:"متوسط"},
+{q:"ما الشهر الذي يسبق رمضان؟",a:"شعبان",o:["رجب","شعبان","شوال","محرم"],c:"معلومات إسلامية",d:"سهل"},
+{q:"ما الشهر الذي يأتي بعد رمضان؟",a:"شوال",o:["شعبان","ذو القعدة","شوال","محرم"],c:"معلومات إسلامية",d:"سهل"},
+{q:"ما أول الأشهر الحُرم في السنة الهجرية؟",a:"محرم",o:["رمضان","محرم","رجب","ذو الحجة"],c:"معلومات إسلامية",d:"متوسط"},
+{q:"كم عدد الأشهر الحُرم؟",a:"أربعة",o:["ثلاثة","أربعة","خمسة","ستة"],c:"معلومات إسلامية",d:"متوسط"},
+{q:"ما اسم الليلة التي أُسري فيها بالنبي ﷺ من المسجد الحرام إلى المسجد الأقصى؟",a:"ليلة الإسراء",o:["ليلة القدر","ليلة الإسراء","ليلة بدر","ليلة الهجرة"],c:"معلومات إسلامية",d:"متوسط"},
+{q:"ما القبلة الأولى للمسلمين؟",a:"المسجد الأقصى",o:["الكعبة المشرفة","المسجد النبوي","المسجد الأقصى","مسجد قباء"],c:"معلومات إسلامية",d:"سهل"},
+{q:"ما اسم والد إبراهيم عليه السلام كما ورد في القرآن؟",a:"آزر",o:["آزر","عمران","عبد الله","يعقوب"],c:"معلومات إسلامية",d:"صعب"},
+{q:"ما اسم أم موسى عليه السلام؟",a:"لم يذكر القرآن اسمها",o:["يوكابد بنص القرآن","آسية","لم يذكر القرآن اسمها","مريم"],c:"معلومات إسلامية",d:"صعب"},
+{q:"ما معنى الإحسان في حديث جبريل؟",a:"أن تعبد الله كأنك تراه، فإن لم تكن تراه فإنه يراك",o:["أن تتصدق فقط","أن تصوم كل يوم","أن تعبد الله كأنك تراه، فإن لم تكن تراه فإنه يراك","أن تحج كل عام"],c:"معلومات إسلامية",d:"صعب"},
+{q:"ما اسم خازن النار كما ورد في القرآن؟",a:"مالك",o:["رضوان","مالك","جبريل","ميكائيل"],c:"معلومات إسلامية",d:"صعب"}
+];
+
+let mode = "solo";
+let deck = [];
+let currentIndex = 0;
+let currentPlayer = 0;
+let scores = [0, 0];
+let playerNames = ["اللاعب الأول", "اللاعب الثاني"];
+let review = [];
+let answered = false;
+let lastConfig = null;
+
+const $ = id => document.getElementById(id);
+
+function setMode(selectedMode) {
+mode = selectedMode;
+$("soloMode").classList.toggle("active", mode === "solo");
+$("duoMode").classList.toggle("active", mode === "duo");
+$("playerNames").classList.toggle("hidden", mode !== "duo");
+}
+
+function shuffle(array) {
+const result = [...array];
+
+for (let i = result.length - 1; i > 0; i--) {
+const j = Math.floor(Math.random() * (i + 1));
+[result[i], result[j]] = [result[j], result[i]];
+}
+
+return result;
+}
+
+function startQuiz() {
+lastConfig = {
+category: $("category").value,
+difficulty: $("difficulty").value,
+count: $("questionCount").value
+};
+
+let filtered = questions.filter(q => {
+const categoryMatch =
+lastConfig.category === "الكل" || q.c === lastConfig.category;
+
+const difficultyMatch =
+lastConfig.difficulty === "الكل" || q.d === lastConfig.difficulty;
+
+return categoryMatch && difficultyMatch;
+});
+
+if (!filtered.length) {
+alert("لا توجد أسئلة مطابقة لهذه الاختيارات. جرّب تصنيفًا أو مستوى آخر.");
+return;
+}
+
+deck = shuffle(filtered);
+
+if (lastConfig.count !== "all") {
+deck = deck.slice(0, Math.min(Number(lastConfig.count), deck.length));
+}
+
+playerNames = [
+$("player1").value.trim() || "اللاعب الأول",
+$("player2").value.trim() || "اللاعب الثاني"
+];
+
+currentIndex = 0;
+currentPlayer = 0;
+scores = [0, 0];
+review = [];
+answered = false;
+
+$("setup").classList.add("hidden");
+$("resultScreen").classList.add("hidden");
+$("quizScreen").classList.remove("hidden");
+
+renderQuestion();
+window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function renderQuestion() {
+answered = false;
+
+const item = deck[currentIndex];
+
+$("questionNumber").textContent =
+`السؤال ${currentIndex + 1} من ${deck.length}`;
+
+$("categoryLabel").textContent = item.c;
+
+$("turnLabel").textContent = mode === "duo"
+? `دور: ${playerNames[currentPlayer]}`
+: "التحدي الفردي";
+
+$("progressFill").style.width =
+`${(currentIndex / deck.length) * 100}%`;
+
+$("questionText").textContent = item.q;
+$("feedback").className = "feedback hidden";
+$("feedback").textContent = "";
+$("nextButton").classList.add("hidden");
+
+const answers = shuffle(item.o);
+const container = $("answers");
+container.innerHTML = "";
+
+answers.forEach(answer => {
+const button = document.createElement("button");
+button.className = "answer";
+button.textContent = answer;
+button.addEventListener("click", () => selectAnswer(answer, button));
+container.appendChild(button);
+});
+}
+
+function selectAnswer(selected, button) {
+if (answered) return;
+
+answered = true;
+
+const item = deck[currentIndex];
+const correct = selected === item.a;
+const buttons = [...$("answers").querySelectorAll("button")];
+
+buttons.forEach(btn => {
+btn.disabled = true;
+
+if (btn.textContent === item.a) {
+btn.classList.add("correct");
+}
+});
+
+if (correct) {
+scores[currentPlayer]++;
+button.classList.add("correct");
+
+$("feedback").textContent =
+"إجابة صحيحة! أحسنت، حصلت على نقطة.";
+
+$("feedback").className = "feedback good";
+} else {
+button.classList.add("wrong");
+
+$("feedback").textContent =
+`إجابة غير صحيحة. الإجابة الصحيحة هي: ${item.a}`;
+
+$("feedback").className = "feedback bad";
+}
+
+review.push({
+question: item.q,
+correctAnswer: item.a,
+selectedAnswer: selected,
+correct,
+player: currentPlayer
+});
+
+$("progressFill").style.width =
+`${((currentIndex + 1) / deck.length) * 100}%`;
+
+$("nextButton").textContent =
+currentIndex === deck.length - 1
+? "عرض النتيجة 🏆"
+: "السؤال التالي ←";
+
+$("nextButton").classList.remove("hidden");
+}
+
+function nextQuestion() {
+if (!answered) return;
+
+if (currentIndex >= deck.length - 1) {
+showResults();
+return;
+}
+
+currentIndex++;
+
+if (mode === "duo") {
+currentPlayer = currentIndex % 2;
+}
+
+renderQuestion();
+}
+
+function showResults() {
+$("quizScreen").classList.add("hidden");
+$("resultScreen").classList.remove("hidden");
+
+const total = deck.length;
+const percentage = Math.round((scores[0] / total) * 100);
+
+if (mode === "solo") {
+$("resultIcon").textContent =
+percentage >= 80 ? "🏆" : percentage >= 50 ? "👏" : "📚";
+
+$("resultTitle").textContent =
+percentage >= 80
+? "ممتاز! أداء رائع"
+: percentage >= 50
+? "أحسنت! استمر بالتعلّم"
+: "لا تستسلم، جرّب مرة أخرى";
+
+$("resultDescription").textContent =
+`أجبت عن ${scores[0]} سؤالًا بشكل صحيح من أصل ${total} سؤال.`;
+
+$("scoreGrid").innerHTML = `
+<div class="score-box">
+<span>الإجابات الصحيحة</span>
+<strong>${scores[0]}</strong>
+</div>
+<div class="score-box">
+<span>النتيجة</span>
+<strong>${percentage}%</strong>
+</div>
+`;
+} else {
+let title = "تعادل!";
+let icon = "🤝";
+
+if (scores[0] > scores[1]) {
+title = `الفائز: ${playerNames[0]}`;
+icon = "🏆";
+} else if (scores[1] > scores[0]) {
+title = `الفائز: ${playerNames[1]}`;
+icon = "🏆";
+}
+
+$("resultIcon").textContent = icon;
+$("resultTitle").textContent = title;
+$("resultDescription").textContent =
+"انتهت المنافسة! إليكم النتائج.";
+
+$("scoreGrid").innerHTML = `
+<div class="score-box">
+<span>${escapeHTML(playerNames[0])}</span>
+<strong>${scores[0]}</strong>
+</div>
+<div class="score-box">
+<span>${escapeHTML(playerNames[1])}</span>
+<strong>${scores[1]}</strong>
+</div>
+`;
+}
+
+const reviewList = $("reviewList");
+reviewList.innerHTML = "";
+
+if (!review.length) {
+reviewList.textContent = "لا توجد إجابات لمراجعتها.";
+}
+
+review.forEach((item, index) => {
+const row = document.createElement("div");
+row.className = "review-item";
+
+const question = document.createElement("div");
+question.className = "review-question";
+question.textContent = `${index + 1}. ${item.question}`;
+
+const correct = document.createElement("div");
+correct.className = "review-answer";
+correct.textContent = `الإجابة الصحيحة: ${item.correctAnswer}`;
+
+row.appendChild(question);
+
+if (mode === "duo") {
+const player = document.createElement("div");
+player.textContent = `إجابة ${playerNames[item.player]}`;
+row.appendChild(player);
+}
+
+row.appendChild(correct);
+
+if (!item.correct) {
+const wrong = document.createElement("div");
+wrong.className = "review-your-answer";
+wrong.textContent = `إجابتك: ${item.selectedAnswer}`;
+row.appendChild(wrong);
+}
+
+reviewList.appendChild(row);
+});
+
+window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function quitQuiz() {
+if (confirm("هل تريد إنهاء المسابقة والعودة إلى الإعدادات؟")) {
+showSetup();
+}
+}
+
+function showSetup() {
+$("setup").classList.remove("hidden");
+$("quizScreen").classList.add("hidden");
+$("resultScreen").classList.add("hidden");
+window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function escapeHTML(value) {
+return String(value).replace(/[&<>"']/g, char => ({
+"&": "&amp;",
+"<": "&lt;",
+">": "&gt;",
+'"': "&quot;",
+"'": "&#39;"
+})[char]);
+}
+</script>
+</body>
+</html>
